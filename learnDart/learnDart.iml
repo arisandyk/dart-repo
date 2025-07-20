@@ -1,9 +1,45 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module type="WEB_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
-    <content url="file://$MODULE_DIR$" />
-    <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Dart SDK" level="project" />
-  </component>
-</module>
+import 'package:belajar_dart/belajar_dart.dart' as belajar_dart;
+import 'dart:io';
+
+void main(List<String> arguments) {
+  konversiSuhu();
+}
+
+void konversiSuhu(){
+  bool ulangiProgram = true;
+  while(ulangiProgram){
+    stdout.write(''
+        'Ini adalah menu merubah celcius menjadi satuan suhu lain: \n'
+        '1. Konversi Suhu menjadi Fahrenheit \n'
+        '2. Konversi Suhu menjadi Reamur \n'
+        '3. Konversi Suhu menjadi Kelvin \n'
+        'silahkan pilih dengan mengetikkan angka: ');
+
+    int angkaPilihan = int.parse(stdin.readLineSync()!);
+    stdout.write('Masukkan nilai suhu yang ingin dikonversi: ');
+    double suhuCelcius = double.parse(stdin.readLineSync()!);
+    if (angkaPilihan == 1) {
+      double suhuFahrenheit = (suhuCelcius * (9 / 5)) + 32;
+      print('$suhuCelcius \u00B0C = $suhuFahrenheit \u00B0F');
+    } else if (angkaPilihan == 2) {
+      double suhuReamur = suhuCelcius * (4 / 5);
+      print('$suhuCelcius \u00B0C = $suhuReamur \u00B0R');
+    } else if (angkaPilihan == 3) {
+      double suhuKelvin = suhuCelcius + 273.15;
+      print('$suhuCelcius \u00B0C = $suhuKelvin \u00B0K');
+    } else {
+      print('Maaf menu konversi lain belum tersedia');
+    }
+
+    if(ulangiProgram){
+      stdout.write('\n'
+          'Apakah kamu ingin melakukan konversi lagi? (y/n): ');
+      String? konfirmasiUlang = stdin.readLineSync()?.toLowerCase();
+
+      if(konfirmasiUlang != 'y'){
+        ulangiProgram = false;
+        print('Terimakasih telah menggunakan program konversi suhu, See You!');
+      }
+    }
+  }
+}
